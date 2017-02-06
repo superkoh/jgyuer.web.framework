@@ -186,3 +186,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 /.idea/
+!/tools/mbg/mybatis-generator-core-1.3.5.jar
+!/tools/mbg/mysql-connector-java-5.1.38.jar
+!/tools/mbg/mybatis-generator-core-1.3.3.jar
