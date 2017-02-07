@@ -1,10 +1,7 @@
 package com.jgyuer.framework.api.handler;
 
-import com.jgyuer.framework.exception.NeedGuestException;
 import com.jgyuer.framework.api.response.ErrorRes;
-import com.jgyuer.framework.exception.BizException;
-import com.jgyuer.framework.exception.NotLoginException;
-import com.jgyuer.framework.exception.PermissionDeniedException;
+import com.jgyuer.framework.exception.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -34,11 +31,16 @@ abstract public class AbstractApiExceptionHandler {
         return new ErrorRes(e);
     }
 
-    @ExceptionHandler(BizException.class)
+    @ExceptionHandler({BizException.class, BizRuntimeException.class})
     @ResponseBody
-    public ErrorRes bizExceptionHandler(HttpServletResponse response, BizException e) {
+    public ErrorRes bizExceptionHandler(HttpServletResponse response, Exception e) {
         response.setStatus(400);
-        return new ErrorRes(e);
+        if (e instanceof BizException) {
+            return new ErrorRes((BizException) e);
+        } else if (e instanceof BizRuntimeException) {
+            return new ErrorRes((BizRuntimeException) e);
+        }
+        return new ErrorRes(-1, "未知错误");
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
