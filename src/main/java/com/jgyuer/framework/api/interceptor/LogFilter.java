@@ -2,7 +2,6 @@ package com.jgyuer.framework.api.interceptor;
 
 import com.jgyuer.framework.ApplicationContextUtil;
 import com.jgyuer.framework.runtime.env.WebRuntimeEnv;
-import com.jgyuer.framework.persistence.mybatis.interceptor.QueryCountInterceptor;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +17,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class LogFilter implements Filter {
     private static final Logger accessLogger = LoggerFactory.getLogger("accessLogger");
+
+    private List<LogFilterInterceptor> logFilterInterceptorList;
+
+    public LogFilter(List<LogFilterInterceptor> logFilterInterceptorList) {
+        if (null == logFilterInterceptorList) {
+            this.logFilterInterceptorList = new ArrayList<>();
+        } else {
+            this.logFilterInterceptorList = logFilterInterceptorList;
+        }
+    }
 
     private static void addLogKV(StringBuilder builder, String key, String value) {
         builder.append("[").append(key).append(":").append(value).append("]");
@@ -57,9 +68,7 @@ public class LogFilter implements Filter {
             wrapperResponse.copyBodyToResponse();
         } else {
             ApplicationContext context = ApplicationContextUtil.getApplicationContext();
-            QueryCountInterceptor queryCountInterceptor = (QueryCountInterceptor) context.getBean
-                    ("queryCountInterceptor");
-            queryCountInterceptor.startCounter();
+            logFilterInterceptorList.forEach(LogFilterInterceptor::prepare);
             StringBuilder accessLogBuilder = new StringBuilder();
             long startTime = Instant.now().toEpochMilli();
             addLogKV(accessLogBuilder, "start", String.valueOf(startTime));
@@ -99,11 +108,11 @@ public class LogFilter implements Filter {
                 addLogKV(accessLogBuilder, "response", IOUtils.toString(wrapperResponse.getContentAsByteArray(),
                         "UTF-8"));
             }
+            logFilterInterceptorList.forEach(logFilterInterceptor -> addLogKV(accessLogBuilder, logFilterInterceptor
+                    .getKey(), logFilterInterceptor.getOutput()));
             long endTime = Instant.now().toEpochMilli();
-            addLogKV(accessLogBuilder, "dbCount", queryCountInterceptor.getQueryCount().toString());
             addLogKV(accessLogBuilder, "duration", String.valueOf(endTime - startTime) + "ms");
             accessLogger.info(accessLogBuilder.toString());
-            queryCountInterceptor.clearCounter();
             wrapperResponse.copyBodyToResponse();
         }
     }

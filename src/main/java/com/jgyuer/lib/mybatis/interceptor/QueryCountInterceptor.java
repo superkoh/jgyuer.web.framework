@@ -1,34 +1,19 @@
-package com.jgyuer.framework.persistence.mybatis.interceptor;
+package com.jgyuer.lib.mybatis.interceptor;
 
+import com.jgyuer.framework.api.interceptor.LogFilterInterceptor;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
-@Component("queryCountInterceptor")
-@Order(2)
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class,
                 RowBounds.class, ResultHandler.class})})
-public class QueryCountInterceptor implements Interceptor {
+public class QueryCountInterceptor implements Interceptor, LogFilterInterceptor {
     private ThreadLocal<Integer> queryCount = new ThreadLocal<>();
-
-    public void startCounter() {
-        queryCount.set(0);
-    }
-
-    public Integer getQueryCount() {
-        return queryCount.get();
-    }
-
-    public void clearCounter() {
-        queryCount.remove();
-    }
 
     public Object intercept(Invocation invocation) throws Throwable {
         Integer count = queryCount.get();
@@ -43,5 +28,22 @@ public class QueryCountInterceptor implements Interceptor {
     }
 
     public void setProperties(Properties properties) {
+    }
+
+    @Override
+    public void prepare() {
+        queryCount.set(0);
+    }
+
+    @Override
+    public String getOutput() {
+        String output = queryCount.get().toString();
+        queryCount.remove();
+        return output;
+    }
+
+    @Override
+    public String getKey() {
+        return "dbCount";
     }
 }

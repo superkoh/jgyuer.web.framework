@@ -1,4 +1,4 @@
-package com.jgyuer.framework.persistence.mybatis.mapper;
+package com.jgyuer.lib.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Param;
 

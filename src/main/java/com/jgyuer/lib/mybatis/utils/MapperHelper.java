@@ -1,8 +1,7 @@
-package com.jgyuer.framework.persistence.mybatis.utils;
+package com.jgyuer.lib.mybatis.utils;
 
-import com.jgyuer.framework.persistence.mybatis.exception.RecordNotFoundException;
-import com.jgyuer.framework.persistence.mybatis.mapper.BaseMapper;
-import com.jgyuer.framework.persistence.mybatis.mapper.BaseMapperWithPK;
+import com.jgyuer.lib.mybatis.mapper.BaseMapper;
+import com.jgyuer.lib.mybatis.mapper.BaseMapperWithPK;
 import com.jgyuer.framework.type.Page;
 import com.jgyuer.framework.type.PageList;
 import org.slf4j.Logger;
@@ -20,17 +19,17 @@ import java.util.Map;
 public class MapperHelper {
     private static final Logger logger = LoggerFactory.getLogger(MapperHelper.class);
 
-    public static <R, RE, K, M extends BaseMapperWithPK<R, RE, K>> R selectByPrimaryKeyGuaranteed(M mapper, K id)
-            throws RecordNotFoundException {
+    public static <R, RE, K, M extends BaseMapperWithPK<R, RE, K>> R selectByPrimaryKeyGuaranteed(M mapper, K id) {
         R r = mapper.selectByPrimaryKey(id);
         if (null == r) {
-            throw new RecordNotFoundException(mapper.getClass().getTypeName().replace("Mapper", ""));
+            throw new IllegalArgumentException(mapper.getClass().getTypeName().replace("Mapper", "") + " not found");
         }
         try {
             Method m = r.getClass().getMethod("getIsDeleted");
             Boolean isDeleted = (Boolean) m.invoke(r);
             if (isDeleted) {
-                throw new RecordNotFoundException(mapper.getClass().getTypeName().replace("Mapper", ""));
+                throw new IllegalArgumentException(mapper.getClass().getTypeName().replace("Mapper", "") + " not " +
+                        "found");
             }
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
         }

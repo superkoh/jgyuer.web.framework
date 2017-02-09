@@ -1,4 +1,4 @@
-package com.jgyuer.framework.persistence.mybatis.mapper;
+package com.jgyuer.lib.mybatis.mapper;
 
 public interface BaseMapperWithPK<R, RE, K> extends BaseMapper<R, RE> {
 

@@ -1,20 +1,17 @@
-package com.jgyuer.framework.persistence.mybatis.interceptor;
+package com.jgyuer.lib.mybatis.interceptor;
 
+import com.jgyuer.framework.persistence.record.AuthorTraceable;
+import com.jgyuer.framework.persistence.record.TimeTraceable;
 import com.jgyuer.framework.runtime.env.RuntimeEnv;
-import com.jgyuer.framework.persistence.mybatis.record.AuthorTraceable;
-import com.jgyuer.framework.persistence.mybatis.record.TimeTraceable;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Properties;
-@Component
-@Order(1)
+
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
 public class TimeAndAuthorTraceInterceptor implements Interceptor {
     @Autowired

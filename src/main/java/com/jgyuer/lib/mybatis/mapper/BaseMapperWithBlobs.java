@@ -1,14 +1,12 @@
-package com.jgyuer.framework.persistence.mybatis.mapper;
+package com.jgyuer.lib.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface BaseMapperWithPKAndBlobs<R, RE, K> extends BaseMapperWithPK<R, RE, K> {
+public interface BaseMapperWithBlobs<R, RE> extends BaseMapper<R, RE> {
 
     List<R> selectByExampleWithBLOBs(RE example);
 
     int updateByExampleWithBLOBs(@Param("record") R record, @Param("example") RE example);
-
-    int updateByPrimaryKeyWithBLOBs(R record);
 }

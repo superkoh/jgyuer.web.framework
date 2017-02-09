@@ -1,4 +1,4 @@
-package com.jgyuer.framework.persistence.mybatis.record;
+package com.jgyuer.framework.persistence.record;
 
 import com.jgyuer.framework.lang.BaseObject;
 

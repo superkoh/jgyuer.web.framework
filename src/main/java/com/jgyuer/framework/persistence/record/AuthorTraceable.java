@@ -1,4 +1,4 @@
-package com.jgyuer.framework.persistence.mybatis.record;
+package com.jgyuer.framework.persistence.record;
 
 public interface AuthorTraceable {
     void setCreateUser(Integer createUser);
