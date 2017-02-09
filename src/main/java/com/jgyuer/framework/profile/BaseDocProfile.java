@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @ConfigurationProperties("jgyuer.swagger.api")
 @EnableSwagger2
-@Profile(ProfileConstant.DOC)
+@Profile({ProfileConstant.DOC})
 public class BaseDocProfile {
     private String basePackage;
     private String pathRegex;
