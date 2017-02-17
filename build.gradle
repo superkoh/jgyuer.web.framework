@@ -54,13 +54,11 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-aspects', version: '4.3.6.RELEASE'
     aspectpath group: 'org.springframework', name: 'spring-aspects', version: '4.3.6.RELEASE'
 
-
-    compile('mysql:mysql-connector-java:5.1.38')
     compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1')
     compile('commons-io:commons-io:2.5')
     compile('com.zaxxer:HikariCP:2.4.7')
     compile('ch.qos.logback:logback-classic:1.1.7')
-    compile('redis.clients:jedis:2.8.1')
+    compile('redis.clients:jedis:2.9.0')
     compile('org.apache.commons:commons-lang3:3.4')
     compile('com.aliyun:aliyun-java-sdk-core:3.0.5')
     compile('com.aliyun:aliyun-java-sdk-dm:3.0.0-rc1')
@@ -80,11 +78,8 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:2.8.5"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5"
     compile group: 'com.sun.mail', name: 'javax.mail', version: '1.5.6'
-    testCompile('com.jayway.jsonpath:json-path:2.2.0')
-    testCompile('com.jayway.jsonpath:json-path-assert:2.2.0')
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.14'
+    gradleVersion = '3.3'
 }
