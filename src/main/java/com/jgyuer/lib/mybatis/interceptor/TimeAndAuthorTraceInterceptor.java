@@ -1,7 +1,7 @@
 package com.jgyuer.lib.mybatis.interceptor;
 
-import com.jgyuer.framework.persistence.record.AuthorTraceable;
-import com.jgyuer.framework.persistence.record.TimeTraceable;
+import com.jgyuer.framework.domain.AuthorTraceable;
+import com.jgyuer.framework.domain.TimeTraceable;
 import com.jgyuer.framework.runtime.env.RuntimeEnv;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;

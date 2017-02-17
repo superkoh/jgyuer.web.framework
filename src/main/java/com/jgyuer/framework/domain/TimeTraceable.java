@@ -1,4 +1,4 @@
-package com.jgyuer.framework.persistence.record;
+package com.jgyuer.framework.domain;
 
 import java.time.LocalDateTime;
 
