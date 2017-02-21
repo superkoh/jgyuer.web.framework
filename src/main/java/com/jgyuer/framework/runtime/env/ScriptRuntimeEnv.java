@@ -11,5 +11,5 @@ import org.springframework.stereotype.Component;
  */
 @Profile({ProfileConstant.RT_SCRIPT})
 @Component
-public class ScriptRuntimeEnv {
+public class ScriptRuntimeEnv extends RuntimeEnv {
 }
