@@ -5,17 +5,17 @@ import com.jgyuer.framework.lang.BaseObject;
 import java.time.LocalDateTime;
 
 public abstract class LoginUserAdapter extends BaseObject implements LoginUser {
-    private Integer id;
+    private Long id;
     private String username;
     private String token;
     private LocalDateTime tokenExpireTime;
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

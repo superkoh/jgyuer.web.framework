@@ -17,7 +17,7 @@ public class PageRes<T extends BizRes> extends ListRes<T> {
     @ApiModelProperty(required = true, value = "每页数量")
     private Integer pageNo;
     @ApiModelProperty(value = "全部数量")
-    private Integer totalCnt;
+    private Long totalCnt;
 
     private Integer prevPage;
     private Integer nextPage;
@@ -28,13 +28,13 @@ public class PageRes<T extends BizRes> extends ListRes<T> {
                 .getPageNo(), pageList.getTotalCnt());
     }
 
-    public PageRes(List<T> list, Integer pageSize, Integer pageNo, Integer totalCnt) {
+    public PageRes(List<T> list, Integer pageSize, Integer pageNo, Long totalCnt) {
         super(list);
         this.pageSize = pageSize;
         this.pageNo = pageNo;
         this.totalCnt = totalCnt;
 
-        int totalPage = (this.totalCnt / this.pageSize) + 1;
+        int totalPage = (int)((this.totalCnt / this.pageSize) + 1);
         if (this.totalCnt % this.pageSize == 0) {
             totalPage--;
         }
@@ -101,11 +101,11 @@ public class PageRes<T extends BizRes> extends ListRes<T> {
         this.pageNo = pageNo;
     }
 
-    public Integer getTotalCnt() {
+    public Long getTotalCnt() {
         return totalCnt;
     }
 
-    public void setTotalCnt(Integer totalCnt) {
+    public void setTotalCnt(Long totalCnt) {
         this.totalCnt = totalCnt;
     }
 

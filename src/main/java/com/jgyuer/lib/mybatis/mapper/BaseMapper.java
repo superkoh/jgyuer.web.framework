@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BaseMapper<R, RE> extends IMapper {
 
-    int countByExample(RE example);
+    long countByExample(RE example);
 
     int deleteByExample(RE example);
 

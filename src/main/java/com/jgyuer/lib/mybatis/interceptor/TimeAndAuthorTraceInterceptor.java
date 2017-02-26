@@ -33,11 +33,8 @@ public class TimeAndAuthorTraceInterceptor implements Interceptor {
             AuthorTraceable authorTraceablePO = (AuthorTraceable) record;
             if (mappedStatement.getSqlCommandType().equals(SqlCommandType.INSERT)) {
                 authorTraceablePO.setCreateUser(env.getLoginUser().getId());
-                authorTraceablePO.setCreateUserName(env.getLoginUser().getUsername());
             }
             authorTraceablePO.setUpdateUser(env.getLoginUser().getId());
-            authorTraceablePO.setUpdateUserName(env.getLoginUser().getUsername());
-
         }
         return invocation.proceed();
     }

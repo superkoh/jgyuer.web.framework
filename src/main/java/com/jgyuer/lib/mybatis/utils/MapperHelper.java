@@ -100,7 +100,7 @@ public class MapperHelper {
     public static <R, RE, M extends BaseMapper<R, RE>> PageList<R> selectPageByExample(M mapper, RE example, Page
             page) {
         try {
-            int totalCnt = mapper.countByExample(example);
+            long totalCnt = mapper.countByExample(example);
             int offset = page.getPageSize() * (page.getPageNo() - 1);
             int limit = page.getPageSize();
             String orderByClause = page.getOrderBy();
@@ -116,7 +116,7 @@ public class MapperHelper {
             return new PageList<>(list, page, totalCnt);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            return new PageList<>(Collections.emptyList(), page, 0);
+            return new PageList<>(Collections.emptyList(), page, 0L);
         }
     }
 }

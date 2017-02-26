@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
  */
 public class PageList<T> extends BaseObject {
     private List<T> list;
-    private int totalCnt;
-    private int pageSize;
-    private int pageNo;
+    private Long totalCnt;
+    private Integer pageSize;
+    private Integer pageNo;
 
-    public PageList(List<T> list, Page page, int totalCnt) {
+    public PageList(List<T> list, Page page, Long totalCnt) {
         this.list = list;
         this.pageSize = page.getPageSize();
         this.pageNo = page.getPageNo();
@@ -37,27 +37,27 @@ public class PageList<T> extends BaseObject {
         this.list = list;
     }
 
-    public int getTotalCnt() {
+    public Long getTotalCnt() {
         return totalCnt;
     }
 
-    public void setTotalCnt(int totalCnt) {
+    public void setTotalCnt(Long totalCnt) {
         this.totalCnt = totalCnt;
     }
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public int getPageNo() {
+    public Integer getPageNo() {
         return pageNo;
     }
 
-    public void setPageNo(int pageNo) {
+    public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
     }
 }

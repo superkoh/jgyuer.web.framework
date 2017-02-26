@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
  */
 public class SystemUser extends BaseObject implements LoginUser {
     @Override
-    public Integer getId() {
-        return 0;
+    public Long getId() {
+        return 0L;
     }
 
     @Override
