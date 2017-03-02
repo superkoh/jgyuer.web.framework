@@ -25,7 +25,7 @@ public class MybatisConfig {
     private String password;
     private Integer maxPoolSize = 10;
     private Integer connectionTimeout = 5000;
-    private Integer maxLifetime = 60000;
+    private Integer maxLifetime = 1800000;
     private String cachePrepStmts = "true";
     private String prepStmtCacheSize = "250";
     private String prepStmtCacheSqlLimit = "2048";
