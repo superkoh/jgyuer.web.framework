@@ -1,6 +1,6 @@
 package com.jgyuer.framework.script;
 
-import com.jgyuer.framework.profile.ProfileConstant;
+import com.jgyuer.autoconfig.profiles.ProfileConstant;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

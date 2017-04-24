@@ -1,8 +1,8 @@
 package com.jgyuer.framework.api.interceptor;
 
+import com.jgyuer.framework.runtime.RuntimeEnv;
 import com.jgyuer.framework.security.service.LoginUserService;
 import com.jgyuer.framework.security.subject.LoginUser;
-import com.jgyuer.framework.runtime.env.RuntimeEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

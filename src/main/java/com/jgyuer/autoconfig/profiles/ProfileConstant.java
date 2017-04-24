@@ -1,4 +1,4 @@
-package com.jgyuer.framework.profile;
+package com.jgyuer.autoconfig.profiles;
 
 public class ProfileConstant {
     public final static String RT_UT = "ut";

@@ -1,7 +1,8 @@
-package com.jgyuer.framework.runtime.env;
+package com.jgyuer.autoconfig.rtenv;
 
+import com.jgyuer.framework.runtime.RuntimeEnv;
 import com.jgyuer.framework.security.subject.GuestUser;
-import com.jgyuer.framework.profile.ProfileConstant;
+import com.jgyuer.autoconfig.profiles.ProfileConstant;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;

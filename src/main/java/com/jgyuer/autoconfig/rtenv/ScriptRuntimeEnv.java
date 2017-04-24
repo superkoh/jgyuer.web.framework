@@ -1,6 +1,7 @@
-package com.jgyuer.framework.runtime.env;
+package com.jgyuer.autoconfig.rtenv;
 
-import com.jgyuer.framework.profile.ProfileConstant;
+import com.jgyuer.autoconfig.profiles.ProfileConstant;
+import com.jgyuer.framework.runtime.RuntimeEnv;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 

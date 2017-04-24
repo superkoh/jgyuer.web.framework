@@ -1,6 +1,6 @@
 package com.jgyuer.framework;
 
-import com.jgyuer.framework.profile.ProfileConstant;
+import com.jgyuer.autoconfig.profiles.ProfileConstant;
 import com.jgyuer.framework.script.ScriptInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

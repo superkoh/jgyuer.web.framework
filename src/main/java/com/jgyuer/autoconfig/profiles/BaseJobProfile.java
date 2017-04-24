@@ -1,4 +1,4 @@
-package com.jgyuer.framework.profile;
+package com.jgyuer.autoconfig.profiles;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;

@@ -24,23 +24,33 @@ abstract public class AbstractApiExceptionHandler {
         return new ErrorRes(e);
     }
 
-    @ExceptionHandler({NotLoginException.class, NeedGuestException.class})
+    @ExceptionHandler({NotLoginException.class})
     @ResponseBody
-    public ErrorRes notLoginExceptionHandler(HttpServletResponse response, BizException e) {
+    public ErrorRes notLoginExceptionHandler(HttpServletResponse response, NotLoginException e) {
         response.setStatus(403);
         return new ErrorRes(e);
     }
 
-    @ExceptionHandler({BizException.class, BizRuntimeException.class})
+    @ExceptionHandler({NeedGuestException.class})
     @ResponseBody
-    public ErrorRes bizExceptionHandler(HttpServletResponse response, Exception e) {
+    public ErrorRes needGuestExceptionHandler(HttpServletResponse response, NeedGuestException e) {
+        response.setStatus(403);
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
+        return new ErrorRes(e);
+    }
+
+    @ExceptionHandler({BizException.class})
+    @ResponseBody
+    public ErrorRes bizExceptionHandler(HttpServletResponse response, BizException e) {
         response.setStatus(400);
-        if (e instanceof BizException) {
-            return new ErrorRes((BizException) e);
-        } else if (e instanceof BizRuntimeException) {
-            return new ErrorRes((BizRuntimeException) e);
-        }
-        return new ErrorRes(-1, "未知错误");
+        return new ErrorRes(e);
+    }
+
+    @ExceptionHandler({BizRuntimeException.class})
+    @ResponseBody
+    public ErrorRes bizExceptionHandler(HttpServletResponse response, BizRuntimeException e) {
+        response.setStatus(400);
+        return new ErrorRes(e);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)

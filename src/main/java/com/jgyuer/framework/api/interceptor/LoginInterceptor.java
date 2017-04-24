@@ -4,7 +4,7 @@ import com.jgyuer.framework.api.annotation.GuestRequired;
 import com.jgyuer.framework.api.annotation.LoginRequired;
 import com.jgyuer.framework.exception.NeedGuestException;
 import com.jgyuer.framework.exception.NotLoginException;
-import com.jgyuer.framework.runtime.env.RuntimeEnv;
+import com.jgyuer.framework.runtime.RuntimeEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

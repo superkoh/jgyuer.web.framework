@@ -1,7 +1,7 @@
 package com.jgyuer.framework.api;
 
-import com.jgyuer.framework.runtime.env.RuntimeEnv;
-import com.jgyuer.framework.runtime.env.WebRuntimeEnv;
+import com.jgyuer.framework.runtime.RuntimeEnv;
+import com.jgyuer.autoconfig.rtenv.WebRuntimeEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

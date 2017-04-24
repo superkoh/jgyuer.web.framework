@@ -1,4 +1,4 @@
-package com.jgyuer.framework.profile;
+package com.jgyuer.autoconfig.profiles;
 
 import org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;

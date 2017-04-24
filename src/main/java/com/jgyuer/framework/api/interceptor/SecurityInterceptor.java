@@ -1,8 +1,8 @@
 package com.jgyuer.framework.api.interceptor;
 
 import com.jgyuer.framework.exception.PermissionDeniedException;
-import com.jgyuer.framework.runtime.env.RuntimeEnv;
-import com.jgyuer.framework.runtime.env.WebRuntimeEnv;
+import com.jgyuer.framework.runtime.RuntimeEnv;
+import com.jgyuer.autoconfig.rtenv.WebRuntimeEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

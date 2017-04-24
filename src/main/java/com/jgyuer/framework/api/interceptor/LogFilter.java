@@ -1,7 +1,7 @@
 package com.jgyuer.framework.api.interceptor;
 
-import com.jgyuer.framework.ApplicationContextUtil;
-import com.jgyuer.framework.runtime.env.WebRuntimeEnv;
+import com.jgyuer.framework.ACU;
+import com.jgyuer.autoconfig.rtenv.WebRuntimeEnv;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +67,7 @@ public class LogFilter implements Filter {
             chain.doFilter(wrapperRequest, wrapperResponse);
             wrapperResponse.copyBodyToResponse();
         } else {
-            ApplicationContext context = ApplicationContextUtil.getApplicationContext();
+            ApplicationContext context = ACU.getApplicationContext();
             logFilterInterceptorList.forEach(LogFilterInterceptor::prepare);
             StringBuilder accessLogBuilder = new StringBuilder();
             long startTime = Instant.now().toEpochMilli();

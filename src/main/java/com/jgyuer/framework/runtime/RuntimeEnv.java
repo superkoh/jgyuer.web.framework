@@ -1,4 +1,4 @@
-package com.jgyuer.framework.runtime.env;
+package com.jgyuer.framework.runtime;
 
 import com.jgyuer.framework.security.subject.LoginUser;
 import com.jgyuer.framework.security.subject.SystemUser;
