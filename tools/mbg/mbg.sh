@@ -2,7 +2,7 @@
 
 
 mkdir -p ${HOME}/.jgyuer/libs/java
-MYSQL_CONNECTOR_FILE="$HOME/.jgyuer/libs/java/mysql-connector-java-5.1.40.jar"
+MYSQL_CONNECTOR_FILE="$HOME/.jgyuer/libs/java/mysql-connector-java-5.1.41.jar"
 MYBATIS_GENERATOR_FILE="$HOME/.jgyuer/libs/java/mybatis-generator-core-1.3.5.jar"
 
 if [ -f "$MYSQL_CONNECTOR_FILE" ]
