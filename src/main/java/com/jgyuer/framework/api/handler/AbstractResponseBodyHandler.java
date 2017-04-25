@@ -20,12 +20,17 @@ abstract public class AbstractResponseBodyHandler implements ResponseBodyAdvice<
     public BizRes beforeBodyWrite(BizRes body, MethodParameter returnType, MediaType selectedContentType,
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request, ServerHttpResponse response) {
+        String deviceToken = response.getHeaders().getFirst("X-Jgyuer-Device-Token");
         if (body instanceof ErrorRes) {
+            ((ErrorRes) body).setVd(deviceToken);
             return body;
         }
         if (body instanceof SuccessRes) {
+            ((SuccessRes) body).setVd(deviceToken);
             return body;
         }
-        return new SuccessRes(body);
+        SuccessRes res = new SuccessRes(body);
+        res.setVd(deviceToken);
+        return res;
     }
 }

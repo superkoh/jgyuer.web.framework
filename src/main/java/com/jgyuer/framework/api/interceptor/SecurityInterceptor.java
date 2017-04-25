@@ -2,7 +2,6 @@ package com.jgyuer.framework.api.interceptor;
 
 import com.jgyuer.framework.exception.PermissionDeniedException;
 import com.jgyuer.framework.runtime.RuntimeEnv;
-import com.jgyuer.autoconfig.rtenv.WebRuntimeEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -24,13 +23,6 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter {
         String auth = request.getHeader("X-Jgyuer-Auth");
         if (null == auth || !AUTH_STRING.equals(auth)) {
             throw new PermissionDeniedException();
-        }
-        String deviceToken = request.getHeader("X-Jgyuer-Device-Token");
-        if (null == deviceToken || deviceToken.isEmpty()) {
-            throw new PermissionDeniedException();
-        }
-        if (runtimeEnv instanceof WebRuntimeEnv) {
-            ((WebRuntimeEnv) runtimeEnv).setState("deviceToken", deviceToken);
         }
         return true;
     }

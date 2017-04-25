@@ -6,6 +6,7 @@ import com.jgyuer.framework.exception.BizException;
 public class ErrorRes extends BizRes {
     private Integer ok = -1;
     private String msg = "未知错误";
+    private String vd;
 
     public ErrorRes() {
     }
@@ -39,5 +40,13 @@ public class ErrorRes extends BizRes {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public String getVd() {
+        return vd;
+    }
+
+    public void setVd(String vd) {
+        this.vd = vd;
     }
 }

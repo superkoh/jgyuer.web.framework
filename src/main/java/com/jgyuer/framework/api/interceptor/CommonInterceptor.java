@@ -1,13 +1,15 @@
 package com.jgyuer.framework.api.interceptor;
 
-import com.jgyuer.framework.runtime.RuntimeEnv;
 import com.jgyuer.autoconfig.rtenv.WebRuntimeEnv;
+import com.jgyuer.framework.runtime.RuntimeEnv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 public class CommonInterceptor extends HandlerInterceptorAdapter {
     @Autowired
@@ -20,8 +22,28 @@ public class CommonInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         if (runtimeEnv instanceof WebRuntimeEnv) {
-            ((WebRuntimeEnv) runtimeEnv).setRemoteIp(getRemoteIpAddress(request));
-            ((WebRuntimeEnv) runtimeEnv).setUserAgent(request.getHeader("User-Agent"));
+            WebRuntimeEnv env = (WebRuntimeEnv) runtimeEnv;
+            env.setRemoteIp(getRemoteIpAddress(request));
+            env.setUserAgent(request.getHeader("User-Agent"));
+            String deviceToken = request.getHeader("X-Jgyuer-Device-Token");
+            if (null == deviceToken || deviceToken.isEmpty()) {
+                Cookie[] cookies = request.getCookies();
+                if (null != cookies && cookies.length > 0) {
+                    for (Cookie cookie : cookies) {
+                        if (cookie.getName().equals("jgsid")) {
+                            deviceToken = cookie.getValue();
+                            break;
+                        }
+                    }
+                }
+            }
+            if (null == deviceToken || deviceToken.isEmpty()) {
+                deviceToken = UUID.randomUUID().toString();
+                response.setHeader("X-Jgyuer-Device-Token", deviceToken);
+                Cookie cookie = new Cookie("jgsid", deviceToken);
+                response.addCookie(cookie);
+            }
+            env.setState("deviceToken", deviceToken);
         }
         return true;
     }

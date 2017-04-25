@@ -9,6 +9,7 @@ public class SuccessRes extends BizRes {
     private Integer ok = 0;
     @ApiModelProperty(value = "返回数据")
     private BizRes obj;
+    private String vd;
 
     public SuccessRes() {
     }
@@ -31,5 +32,13 @@ public class SuccessRes extends BizRes {
 
     public void setObj(BizRes obj) {
         this.obj = obj;
+    }
+
+    public String getVd() {
+        return vd;
+    }
+
+    public void setVd(String vd) {
+        this.vd = vd;
     }
 }
