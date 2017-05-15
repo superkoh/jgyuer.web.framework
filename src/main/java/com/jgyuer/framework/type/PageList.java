@@ -15,6 +15,12 @@ public class PageList<T> extends BaseObject {
     private Integer pageSize;
     private Integer pageNo;
 
+    public PageList(List<T> list, Page page) {
+        this.list = list;
+        this.pageSize = page.getPageSize();
+        this.pageNo = page.getPageNo();
+    }
+
     public PageList(List<T> list, Page page, Long totalCnt) {
         this.list = list;
         this.pageSize = page.getPageSize();

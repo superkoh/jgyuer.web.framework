@@ -47,6 +47,7 @@ public class MybatisConfig {
         properties.setProperty("prepStmtCacheSqlLimit", prepStmtCacheSqlLimit);
         properties.setProperty("useServerPrepStmts", useServerPrepStmts);
         configuration.setDataSourceProperties(properties);
+        configuration.setConnectionInitSql("SET NAMES utf8mb4");
         return new HikariDataSource(configuration);
     }
 

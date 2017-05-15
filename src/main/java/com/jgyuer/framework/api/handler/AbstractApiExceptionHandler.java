@@ -35,7 +35,6 @@ abstract public class AbstractApiExceptionHandler {
     @ResponseBody
     public ErrorRes needGuestExceptionHandler(HttpServletResponse response, NeedGuestException e) {
         response.setStatus(403);
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8000");
         return new ErrorRes(e);
     }
 

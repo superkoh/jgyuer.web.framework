@@ -36,6 +36,9 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+compileJava.options.compilerArgs.add '-parameters'
+compileTestJava.options.compilerArgs.add '-parameters'
+
 repositories {
     maven {
         url "http://maven.aliyun.com/nexus/content/groups/public/"

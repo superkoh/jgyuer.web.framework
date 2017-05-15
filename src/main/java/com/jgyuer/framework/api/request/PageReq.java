@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotNull;
 
 @ApiModel
-public class PageReq extends TransferableReq<Page> {
+public class PageReq {
     @NotNull
     @ApiModelProperty(required = true, value = "每页数量")
     private Integer pageSize = 20;
@@ -18,7 +18,7 @@ public class PageReq extends TransferableReq<Page> {
     private String orderBy;
 
     public Page toPage() {
-        return this.toBean();
+        return new Page(pageSize, pageNo, orderBy);
     }
 
     public Integer getPageSize() {

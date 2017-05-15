@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -63,7 +64,7 @@ public class LogFilter implements Filter {
                 response);
         String ua = wrapperRequest.getHeader("User-Agent");
         ua = null == ua ? "" : ua;
-        if (ua.equals("KeepAliveClient")) {
+        if (ua.equals("KeepAliveClient") || HttpMethod.HEAD.matches(wrapperRequest.getMethod())) {
             chain.doFilter(wrapperRequest, wrapperResponse);
             wrapperResponse.copyBodyToResponse();
         } else {
