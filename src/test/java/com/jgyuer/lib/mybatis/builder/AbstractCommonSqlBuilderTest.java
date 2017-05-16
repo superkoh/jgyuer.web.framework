@@ -41,21 +41,6 @@ public class AbstractCommonSqlBuilderTest {
         protected String getTableName() {
             return "user";
         }
-
-        @Override
-        protected Map<String, Class> typeHandlerMap() {
-            return SqlBuilder.typeHandlerMap;
-        }
-
-        @Override
-        protected Map<String, String> jdbcTypeMap() {
-            return SqlBuilder.jdbcTypeMap;
-        }
-
-        @Override
-        protected String getPrimaryKeyName() {
-            return "id";
-        }
     }
 
     class TestDomain extends BaseDomain {
